@@ -39,5 +39,6 @@
                 "HotfixMerge": "artemka124\\HotfixMerge\\Facades\\HotfixMerge"
             }
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
