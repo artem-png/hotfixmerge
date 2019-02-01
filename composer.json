@@ -13,7 +13,7 @@
     "keywords": ["Laravel", "HotfixMerge"],
     "require": {
         "illuminate/support": "*",
-        "gentle/bitbucket-api": "dev-master"
+        "gentle/bitbucket-api": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~7.0"
