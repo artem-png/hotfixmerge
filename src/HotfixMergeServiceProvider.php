@@ -13,15 +13,10 @@ class HotfixMergeServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'artemka124');
-        // $this->loadViewsFrom(__DIR__.'/../resources/views', 'artemka124');
-        // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        // $this->loadRoutesFrom(__DIR__.'/routes.php');
-
-        // Publishing is only necessary when using the CLI.
-        if ($this->app->runningInConsole()) {
-            $this->bootForConsole();
-        }
+        $this->publishes([
+            __DIR__.'/../config/hotfixmerge.php' => config_path('hotfixmerge.php'),
+        ]);
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
     }
 
     /**
@@ -33,7 +28,6 @@ class HotfixMergeServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(__DIR__.'/../config/hotfixmerge.php', 'hotfixmerge');
 
-        // Register the service the package provides.
         $this->app->singleton('hotfixmerge', function ($app) {
             return new HotfixMerge;
         });
@@ -47,36 +41,5 @@ class HotfixMergeServiceProvider extends ServiceProvider
     public function provides()
     {
         return ['hotfixmerge'];
-    }
-    
-    /**
-     * Console-specific booting.
-     *
-     * @return void
-     */
-    protected function bootForConsole()
-    {
-        // Publishing the configuration file.
-        $this->publishes([
-            __DIR__.'/../config/hotfixmerge.php' => config_path('hotfixmerge.php'),
-        ], 'hotfixmerge.config');
-
-        // Publishing the views.
-        /*$this->publishes([
-            __DIR__.'/../resources/views' => base_path('resources/views/vendor/artemka124'),
-        ], 'hotfixmerge.views');*/
-
-        // Publishing assets.
-        /*$this->publishes([
-            __DIR__.'/../resources/assets' => public_path('vendor/artemka124'),
-        ], 'hotfixmerge.views');*/
-
-        // Publishing the translation files.
-        /*$this->publishes([
-            __DIR__.'/../resources/lang' => resource_path('lang/vendor/artemka124'),
-        ], 'hotfixmerge.views');*/
-
-        // Registering package commands.
-        // $this->commands([]);
     }
 }
